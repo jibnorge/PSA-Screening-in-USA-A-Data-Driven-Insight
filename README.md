@@ -25,6 +25,33 @@ The analytical methods include:
 - ### Clustering Analysis:
     - Application of K-means clustering technique, determining the optimal number of clusters via the elbow and silhouette methods, to classify states or regions by similarity in PSA testing prevalence patterns.
 
+## Workflow
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+flowchart LR
+    %% Custom classes – no 'end' keyword
+    classDef start fill:#2ea043,stroke:#56d364,color:#0e1116,font-weight:bold
+    classDef finish fill:#238636,stroke:#2ea043,color:#ffffff
+    classDef step fill:#161b22,stroke:#30363d,color:#e6edf3
+    classDef analytics fill:#0052cc33,stroke:#539bf5,color:#6cb6ff
+    classDef decision fill:#9e6a0333,stroke:#f2cc0c,color:#f0d46c
+    classDef iteration fill:#6e768133,stroke:#8b949e,color:#c9d1d9
+
+    A[Start: PSA Screening Project]:::start --> B[Acquire BRFSS Data<br>2012–2020]:::step
+    B --> C[Preprocess Data<br>Segment Demographics]:::step
+    C --> D[EDA<br>Trends + Demographic Breakdowns]:::analytics
+    D --> E[CI Analysis<br>Prevalence vs Uncertainty]:::analytics
+    E --> F{Ready for Modeling?}:::decision
+    F -- Yes --> G[Forecasting<br>Future Prevalence Projections]:::analytics
+    F -- No --> C[Refine]:::iteration
+    D --> H[Clustering<br>K-Means + Validation]:::analytics
+    G --> I[Combine Insights<br>Trends • Disparities • Forecasts • Clusters]:::step
+    H --> I
+    I --> J[Recommendations<br>Targeted Interventions]:::step
+    J --> K[End: Reports & Actionable Insights]:::finish
+```
+
 ## Key Findings and Insights
 - ### PSA Testing Prevalence Trends (2012-2020):
     - #### Overall Trends:
